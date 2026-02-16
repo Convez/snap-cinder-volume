@@ -152,3 +152,25 @@ class TestDellSCConfiguration:
         )
         assert str(config.san_ip) == "10.0.0.10"
         assert config.dell_sc_ssn == 64702
+
+
+class TestHPEthreeparConfiguration:
+    """Test the HPEthreeparConfiguration class."""
+
+    def test_hpe3par_accepts_valid_configuration(self):
+        """Test valid HPE3Par backend configuration."""
+        config = configuration.HPEthreeparConfiguration(
+            **{
+                "volume-backend-name": "dellsc01",
+                "san-ip": "10.0.0.10",
+                "san-login": "admin",
+                "san-password": "secret",
+                "protocol": "fc",
+                "hpe3par-api-url": "https://10.0.0.10/api/v1",
+                "hpe3par-username": "edituser",
+                "hpe3par-password": "editpwd",
+            }
+        )
+        assert str(config.san_ip) == "10.0.0.10"
+        assert config.hpe3par_api_url == "https://10.0.0.10/api/v1"
+        assert config.hpe3par_username == "edituser"
